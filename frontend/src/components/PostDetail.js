@@ -26,43 +26,57 @@ class PostDetail extends Component {
     let post = this.props.post.posts[0];
     return (
       <div className="card">
-        <div className="card-body">
-          <h2 className="card-title">{post.title}</h2>
-          <div>author: {post.author}</div>
-          <div>category: {post.category}</div>
-          <div>publish time: {post.timestamp}</div>
-          <div>voteScore:{post.voteScore}</div>
-          <div>
-            <p>{post.body}</p>
+        <div className="card-header">
+          <div className="row">
+            <div className="col-sm-10">
+              <h2 className="card-title">{post.title}</h2>
+            </div>
+            <div className="col-xs-2">
+              <button
+                className="btn btn-primary btn-sm"
+                onClick={() => this.props.handleVote(post.id, "upVote")}
+              >
+                <i className="fa fa-angle-up" />
+              </button>
+              <span className="btn btn-primary disabled btn-sm">
+                {post.voteScore}{" "}
+              </span>
+              <button
+                className="btn btn-primary btn-sm"
+                onClick={() => this.props.handleVote(post.id, "downVote")}
+              >
+                <i className="fa fa-angle-down" />
+              </button>
+            </div>
           </div>
-          <Link
-            to={`/${post.category}/${post.id}/edit`}
-            className="btn btn-outline-primary btn-sm"
-            onClick={() => {
-              this.props.handleModal(true);
-            }}
-          >
-            Edit
-          </Link>
-          <button
-            type="button"
-            className="btn btn-outline-danger btn-sm"
-            onClick={() => this.props.deletePost(post.id)}
-          >
-            Delete
-          </button>
-          <button
-            className="btn btn-outline-secondary btn-sm"
-            onClick={() => this.props.handleVote(post.id, "upVote")}
-          >
-            upVote
-          </button>
-          <button
-            className="btn btn-outline-secondary btn-sm"
-            onClick={() => this.props.handleVote(post.id, "downVote")}
-          >
-            downVote
-          </button>
+        </div>
+        <div className="card-body">
+          <div>
+            <h5>{post.body}</h5>
+          </div>
+          <div className="row">
+            <div className="col-sm-4">author: {post.author}</div>
+            <div className="col-sm-3">category: {post.category}</div>
+            <div className="col-sm-3">publish time: {post.timestamp}</div>
+            <div className="col-sm-2">
+              <Link
+                to={`/${post.category}/${post.id}/edit`}
+                className="btn btn-primary btn-sm"
+                onClick={() => {
+                  this.props.handleModal(true);
+                }}
+              >
+                <i className="fa fa-edit" />
+              </Link>
+              <button
+                type="button"
+                className="btn btn-danger btn-sm"
+                onClick={() => this.props.deletePost(post.id)}
+              >
+                Delete
+              </button>
+            </div>
+          </div>
           <div>
             <Comments />
           </div>

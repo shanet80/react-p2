@@ -5,6 +5,7 @@ class CreateComment extends Component {
   render() {
     return (
       <div>
+        <br />
         <h2>add comment</h2>
         <form>
           <div className="form-group">
@@ -21,7 +22,7 @@ class CreateComment extends Component {
           <div className="form-group">
             <button
               type="button"
-              className="btn btn-outline-primary btn-sm"
+              className="btn btn-primary btn-sm"
               onClick={() => {
                 const uuid = uuidv1();
                 this.props.handle({

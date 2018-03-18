@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
 import { connect } from "react-redux";
 import "../assets/css/bootstrap.min.css";
+import "../assets/css/fontawesome-all.min.css";
 import "./App.css";
 import {
   getCats,
@@ -31,23 +32,23 @@ class App extends Component {
       <div>
         <Router>
           <div className="container">
-            <div className="navbar bg-dark">
-              <ul className="nav bg-dark">
-                <Link
-                  className="nav-link"
-                  to="/"
-                  onClick={() => this.props.viewCatDispatch("/")}
-                >
-                  <li className="nav-item">all</li>
-                </Link>
+            <div className="navbar navbar-dark bg-primary">
+              <Link
+                className="nav-link"
+                to="/"
+                onClick={() => this.props.viewCatDispatch("/")}
+              >
+                <li className="navbar-brand">readable</li>
+              </Link>
+              <ul className="nav">
                 {categories.map((cat, index) => (
                   <Link
-                    className="nav-link"
+                    className="nav-link btn-primary"
                     to={"/" + cat.name}
                     onClick={() => this.props.viewCatDispatch(cat.path)}
                   >
-                    <li className="nav-item" key={index}>
-                      {cat.name == "All" ? "Readable" : cat.name}
+                    <li className="nav-link" key={index}>
+                      {(cat.name = cat.name)}
                     </li>
                   </Link>
                 ))}

@@ -14,14 +14,38 @@ class Comments extends Component {
     let comment = this.props.comment.comment;
     return (
       <Fragment>
-        <h4>Comments</h4>
+        <hr />
+        <h4>Comments: </h4>
+        <br />
         <ul>
           {(comment || []).map((comment, index) => (
             <li className="list-unstyled" key={index}>
-              <h4>author: {comment.author}</h4>
-              <span>voteScore: {comment.voteScore}</span>
+              <div className="row">
+                <div className="col-sm-10">
+                  <h5>{comment.body}</h5>
+                </div>
+                <div className="col-sm-2">
+                  <button
+                    className="btn btn-primary btn-sm"
+                    onClick={() => this.props.handleVote(comment.id, "upVote")}
+                  >
+                    <i className="fa fa-angle-up" />
+                  </button>
+                  <span className="btn btn-primary disabled btn-sm">
+                    {comment.voteScore}
+                  </span>
+                  <button
+                    className="btn btn-primary btn-sm"
+                    onClick={() =>
+                      this.props.handleVote(comment.id, "downVote")
+                    }
+                  >
+                    <i className="fa fa-angle-down" />
+                  </button>
+                </div>
+              </div>
               <Link
-                className="btn btn-outline-primary btn-sm"
+                className="btn btn-primary btn-sm"
                 to={
                   "/" +
                   this.props.match.params.cat +
@@ -33,27 +57,15 @@ class Comments extends Component {
                   "editComment"
                 }
               >
-                EditComment
+                <i className="fa fa-edit" />
               </Link>
               <button
-                className="btn btn-outline-danger btn-sm"
+                className="btn btn-danger btn-sm"
                 onClick={() => this.props.deleteComment(comment.id)}
               >
-                Delete
+                <i className="fa fa-trash-alt" />
               </button>
-              <button
-                className="btn btn-outline-secondary btn-sm"
-                onClick={() => this.props.handleVote(comment.id, "upVote")}
-              >
-                upVote
-              </button>
-              <button
-                className="btn btn-outline-secondary btn-sm"
-                onClick={() => this.props.handleVote(comment.id, "downVote")}
-              >
-                downVote
-              </button>
-              <div>{comment.body}</div>
+              <div>author: {comment.author}</div>
               <Route
                 exact
                 path={
@@ -68,6 +80,7 @@ class Comments extends Component {
                 }
                 render={() => <EditComment currentComment={comment} />}
               />
+              <hr />
             </li>
           ))}
         </ul>
@@ -80,6 +93,7 @@ class Comments extends Component {
               this.props.match.params.postid +
               "/createComment"
             }
+            className="btn btn-primary"
           >
             CreateComment
           </Link>

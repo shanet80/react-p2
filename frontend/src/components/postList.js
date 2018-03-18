@@ -8,7 +8,6 @@ import {
   getPostDispatch,
   getPostsByCat
 } from "../actions/actions";
-
 class PostList extends Component {
   componentDidMount() {
     let cat =
@@ -23,56 +22,62 @@ class PostList extends Component {
     return (
       <div>
         <br />
-        <ul className="list-unstyled">
-          {post.map((post, index) => (
-            <li key={index}>
-              <div className="row">
-                <div className="col">
-                  <Link to={`/${post.category}/${post.id}`}>
-                    <h4>title: {post.title}</h4>
-                  </Link>
-                </div>
-                <div className="col">
-                  <Link
-                    to={`/${post.category}/${post.id}/edit`}
-                    className="btn btn-outline-primary btn-sm"
-                    onClick={() => {
-                      this.props.handleModal(true);
-                    }}
-                  >
-                    Edit
-                  </Link>
-                  <button
-                    type="button"
-                    className="btn btn-outline-danger btn-sm"
-                    onClick={() => this.props.deletePost(post.id)}
-                  >
-                    Delete
-                  </button>
-                  <button
-                    className="btn btn-outline-secondary btn-sm"
-                    onClick={() => this.props.handleVote(post.id, "upVote")}
-                  >
-                    upVote
-                  </button>
-                  <button
-                    className="btn btn-outline-secondary btn-sm"
-                    onClick={() => this.props.handleVote(post.id, "downVote")}
-                  >
-                    downVote
-                  </button>
-                </div>
-              </div>
-              <p />
-              <p>
-                <span>
-                  author: {post.author} commentCount: {post.commentCount}{" "}
-                  voteScrore: {post.voteScore}{" "}
+        {post.map((post, index) => (
+          <div key={index}>
+            <div className="row">
+              <div className="col-sm-2">
+                <button
+                  className="btn btn-primary btn-sm"
+                  onClick={() => this.props.handleVote(post.id, "upVote")}
+                >
+                  <i className="fa fa-angle-up" />
+                </button>
+                <span className="btn btn-primary disabled btn-sm">
+                  {post.voteScore}{" "}
                 </span>
-              </p>
-            </li>
-          ))}
-        </ul>
+                <button
+                  className="btn btn-primary btn-sm"
+                  onClick={() => this.props.handleVote(post.id, "downVote")}
+                >
+                  <i className="fa fa-angle-down" />
+                </button>
+              </div>
+              <div className="col-sm-8">
+                <Link to={`/${post.category}/${post.id}`}>
+                  <h4>title: {post.title}</h4>
+                </Link>
+              </div>
+              <div className="col-sm-2">
+                <Link
+                  to={`/${post.category}/${post.id}/edit`}
+                  className="btn btn-primary btn-sm"
+                  onClick={() => {
+                    this.props.handleModal(true);
+                  }}
+                >
+                  <i className="fa fa-edit" />
+                </Link>
+                <button
+                  type="button"
+                  className="btn btn-danger btn-sm"
+                  onClick={() => this.props.deletePost(post.id)}
+                >
+                  <i className="fa fa-trash-alt" />
+                </button>
+              </div>
+            </div>
+            <br />
+            <div className="row">
+              <div className="col-sm-10">
+                <span>author: {post.author}</span>
+              </div>
+              <div className="col-sm-2">
+                <span>commentCount: {post.commentCount} </span>
+              </div>
+            </div>
+            <hr />
+          </div>
+        ))}
       </div>
     );
   }

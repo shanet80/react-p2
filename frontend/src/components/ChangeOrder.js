@@ -10,7 +10,7 @@ function ChangeOrder(props) {
       <div className="pull-right">
         <label className="form-label">Order by</label>
       </div>
-      <div className="order">
+      <div>
         <select
           className="form-control"
           value={order}
