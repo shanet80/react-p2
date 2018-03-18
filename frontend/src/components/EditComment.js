@@ -1,12 +1,15 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { editCommentDispatch } from "../actions/actions";
+import { Link } from "react-router-dom";
 
 class CreateComment extends Component {
   render() {
+    let postCategory = this.props.postCategory;
     return (
       <div>
-        <h2>edit comment</h2>
+        <hr />
+        <h4>edit comment:</h4>
         <form>
           <div className="form-group">
             <label>body</label>
@@ -17,9 +20,9 @@ class CreateComment extends Component {
             />
           </div>
           <div className="form-group">
-            <button
-              type="button"
-              className="btn btn-outline-primary btn-sm"
+            <Link
+              to={"/" + postCategory + "/" + this.props.currentComment.parentId}
+              className="btn btn-success btn-sm"
               onClick={() => {
                 this.props.editComment({
                   id: this.props.currentComment.id,
@@ -28,8 +31,14 @@ class CreateComment extends Component {
                 });
               }}
             >
-              Save
-            </button>
+              <i className="fa fa-save" />
+            </Link>
+            <Link
+              to={"/" + postCategory + "/" + this.props.currentComment.parentId}
+              className="btn btn-warning btn-sm"
+            >
+              <i className="fa fa-ban" />
+            </Link>
           </div>
         </form>
       </div>

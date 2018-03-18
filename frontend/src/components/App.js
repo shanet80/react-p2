@@ -58,7 +58,7 @@ class App extends Component {
                 className="btn btn-secondary pull-right"
                 onClick={() => this.props.handleModal(true)}
               >
-                CreatePost
+                Create Post
               </button>
             </div>
             <CreatePost

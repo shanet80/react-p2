@@ -78,7 +78,7 @@ class PostDetail extends Component {
             </div>
           </div>
           <div>
-            <Comments />
+            <Comments postCategory={post.category} />
           </div>
         </div>
       </div>

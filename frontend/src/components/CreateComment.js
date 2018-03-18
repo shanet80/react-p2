@@ -1,8 +1,10 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 
 const uuidv1 = require("uuid/v1");
 class CreateComment extends Component {
   render() {
+    let postCategory = this.props.postCategory;
     return (
       <div>
         <br />
@@ -20,9 +22,9 @@ class CreateComment extends Component {
             />
           </div>
           <div className="form-group">
-            <button
-              type="button"
-              className="btn btn-primary btn-sm"
+            <Link
+              to={"/" + postCategory + "/" + this.props.postid}
+              className="btn btn-success btn-sm"
               onClick={() => {
                 const uuid = uuidv1();
                 this.props.handle({
@@ -34,8 +36,14 @@ class CreateComment extends Component {
                 });
               }}
             >
-              Add
-            </button>
+              <i className="fa fa-save" />
+            </Link>
+            <Link
+              to={"/" + postCategory + "/" + this.props.postid}
+              className="btn btn-warning btn-sm"
+            >
+              <i className="fa fa-ban" />
+            </Link>
           </div>
         </form>
       </div>

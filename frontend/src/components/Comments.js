@@ -12,6 +12,7 @@ import {
 class Comments extends Component {
   render() {
     let comment = this.props.comment.comment;
+    let postCategory = this.props.postCategory;
     return (
       <Fragment>
         <hr />
@@ -22,7 +23,7 @@ class Comments extends Component {
             <li className="list-unstyled" key={index}>
               <div className="row">
                 <div className="col-sm-10">
-                  <h5>{comment.body}</h5>
+                  <h6>{comment.body}</h6>
                 </div>
                 <div className="col-sm-2">
                   <button
@@ -48,7 +49,7 @@ class Comments extends Component {
                 className="btn btn-primary btn-sm"
                 to={
                   "/" +
-                  this.props.match.params.cat +
+                  postCategory +
                   "/" +
                   this.props.match.params.postid +
                   "/" +
@@ -70,7 +71,7 @@ class Comments extends Component {
                 exact
                 path={
                   "/" +
-                  this.props.match.params.cat +
+                  postCategory +
                   "/" +
                   this.props.match.params.postid +
                   "/" +
@@ -78,7 +79,12 @@ class Comments extends Component {
                   "/" +
                   "editComment"
                 }
-                render={() => <EditComment currentComment={comment} />}
+                render={() => (
+                  <EditComment
+                    currentComment={comment}
+                    postCategory={postCategory}
+                  />
+                )}
               />
               <hr />
             </li>
@@ -88,14 +94,14 @@ class Comments extends Component {
           <Link
             to={
               "/" +
-              this.props.match.params.cat +
+              postCategory +
               "/" +
               this.props.match.params.postid +
               "/createComment"
             }
             className="btn btn-primary"
           >
-            CreateComment
+            Create Comment
           </Link>
           <Route
             exact
@@ -110,6 +116,7 @@ class Comments extends Component {
               <CreateComment
                 handle={this.props.addComment}
                 postid={this.props.match.params.postid}
+                postCategory={postCategory}
               />
             )}
           />
