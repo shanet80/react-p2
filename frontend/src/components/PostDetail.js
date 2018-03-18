@@ -73,7 +73,7 @@ class PostDetail extends Component {
                 className="btn btn-danger btn-sm"
                 onClick={() => this.props.deletePost(post.id)}
               >
-                Delete
+                <i className="fa fa-trash-alt" />
               </button>
             </div>
           </div>
