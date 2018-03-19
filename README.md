@@ -1,12 +1,10 @@
-# Readable API Server
+# Readable
 
-This is the starter project for the final assessment project for Udacity's Redux course where you will build a content and comment web app. Users will be able to post content to predefined categories, comment on their posts and other users' posts, and vote on posts and comments. Users will also be able to edit and delete posts and comments.
+Project using React and Redux to build web application for posts and comments.
 
-This repository includes the code for the backend API Server that you'll use to develop and interact with the front-end portion of the project.
+Code for API Server was provided by [Udacity](https://github.com/udacity/reactnd-project-readable-starter).
 
-## Start Developing
-
-To get started developing right away:
+## This project was bootstrapped with [create-react-app](https://github.com/facebookincubator/create-react-app)
 
 * Install and start the API server
   * `cd api-server`
@@ -16,7 +14,3 @@ To get started developing right away:
   * `cd frontend`
   * `npm install`
   * `npm start`
-
-## API Server
-
-Information about the API server and how to use it can be found in its [README file](api-server/README.md).
