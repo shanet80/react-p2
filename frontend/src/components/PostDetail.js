@@ -17,11 +17,23 @@ class PostDetail extends Component {
   }
 
   render() {
-    if (!this.props.post.posts || !this.props.post.posts[0]) {
-      return <div>nothing to show.</div>;
-    }
-    if (this.props.match.params.postid !== this.props.post.posts[0].id) {
-      return <h4>nothing</h4>;
+    if (
+      !this.props.post.posts ||
+      !this.props.post.posts[0] ||
+      this.props.match.params.postid !== this.props.post.posts[0].id
+    ) {
+      return (
+        <div>
+          <h4>No post available</h4>
+          <Link
+            className="nav-link"
+            to="/"
+            onClick={() => this.props.viewCatDispatch("/")}
+          >
+            Back to Readable
+          </Link>
+        </div>
+      );
     }
     let post = this.props.post.posts[0];
     return (
