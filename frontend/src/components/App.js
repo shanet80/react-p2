@@ -53,14 +53,43 @@ class App extends Component {
                   </Link>
                 ))}
               </ul>
-              <ChangeOrder props={this.props} />
-              <button
-                className="btn btn-secondary pull-right"
-                onClick={() => this.props.handleModal(true)}
-              >
-                Create Post
-              </button>
             </div>
+            <Switch>
+              <Route
+                exact
+                path="/"
+                render={() => (
+                  <div className="row">
+                    <ChangeOrder props={this.props} />
+                    <div className="offset-sm-6 col-sm-2">
+                      <button
+                        className="btn btn-secondary pull-right"
+                        onClick={() => this.props.handleModal(true)}
+                      >
+                        Create Post
+                      </button>
+                    </div>
+                  </div>
+                )}
+              />
+              <Route
+                exact
+                path="/:cat"
+                render={() => (
+                  <div className="row">
+                    <ChangeOrder props={this.props} />
+                    <div className="offset-sm-6 col-sm-2">
+                      <button
+                        className="btn btn-secondary pull-right"
+                        onClick={() => this.props.handleModal(true)}
+                      >
+                        Create Post
+                      </button>
+                    </div>
+                  </div>
+                )}
+              />
+            </Switch>
             <CreatePost
               interfaceCon={this.props.interfaceCon}
               categories={this.props.category.categories}

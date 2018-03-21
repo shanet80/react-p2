@@ -1,41 +1,23 @@
 import * as API from "../API";
-export const LIST_CAT = "LIST_CAT";
-
-export const LIST_POSTS = "LIST_POSTS";
-export const LIST_POSTS_BY_CAT = "LIST_POSTS_BY_CAT";
-export const CHANGE_POST_LIST_ORDER = "CHANGE_POST_LIST_ORDER";
-export const ADD_POST = "ADD_POST";
-export const GET_POST = "GET_POST";
-export const DELETE_POST = "DELETE_POST";
-export const EDIT_POST = "EDIT_POST";
-export const VOTE_POST = "VOTE_POST";
-
-export const LIST_COMMENTS = "LIST_COMMENTS";
-export const ADD_COMMENT = "ADD_COMMENT";
-export const DELETE_COMMENT = "DELETE_COMMENT";
-export const EDIT_COMMENT = "EDIT_COMMENT";
-export const VOTE_COMMENT = "VOTE_COMMENT";
-
-export const POST_MODAL_VISIBLE = "POST_MODAL_VISIBLE";
-export const EDIT_MODAL_VISIBLE = "EDIT_MODAL_VISIBLE";
+import * as types from "./actionTypes";
 
 function listCat(data) {
   return {
-    type: LIST_CAT,
+    type: types.LIST_CAT,
     data: data.categories
   };
 }
 
 export function changePostListOrder(order) {
   return {
-    type: CHANGE_POST_LIST_ORDER,
+    type: types.CHANGE_POST_LIST_ORDER,
     order
   };
 }
 
 function listPosts(data, orderBy) {
   return {
-    type: LIST_POSTS,
+    type: types.LIST_POSTS,
     data: data,
     orderBy
   };
@@ -43,77 +25,77 @@ function listPosts(data, orderBy) {
 
 function getPost(data) {
   return {
-    type: GET_POST,
+    type: types.GET_POST,
     data: data
   };
 }
 
 function listPostsByCat(data) {
   return {
-    type: LIST_POSTS_BY_CAT,
+    type: types.LIST_POSTS_BY_CAT,
     data
   };
 }
 
 function addPost(post) {
   return {
-    type: ADD_POST,
+    type: types.ADD_POST,
     post
   };
 }
 
 function deletePost(post) {
   return {
-    type: DELETE_POST,
+    type: types.DELETE_POST,
     post: post
   };
 }
 
 function editPost(post) {
   return {
-    type: EDIT_POST,
+    type: types.EDIT_POST,
     post: post
   };
 }
 
 function votePost(post) {
   return {
-    type: VOTE_POST,
+    type: types.VOTE_POST,
     post: post
   };
 }
 
 function listComments(data) {
   return {
-    type: LIST_COMMENTS,
+    type: types.LIST_COMMENTS,
     data: data
   };
 }
 
 const addComment = data => {
   return {
-    type: ADD_COMMENT,
+    type: types.ADD_COMMENT,
     data
   };
 };
 
 function deleteComment(comment) {
   return {
-    type: DELETE_COMMENT,
+    type: types.DELETE_COMMENT,
     comment: comment
   };
 }
 
 function editComment(comment) {
   return {
-    type: EDIT_COMMENT,
+    type: types.EDIT_COMMENT,
     comment: comment
   };
 }
 
 function voteComment(comment) {
   return {
-    type: VOTE_COMMENT,
+    type: types.VOTE_COMMENT,
     comment: comment
   };
 }
@@ -125,14 +107,14 @@ export const deleteCommentDispatch = commentid => dispatch =>
 
 export const postModal = isOpen => {
   return {
-    type: POST_MODAL_VISIBLE,
+    type: types.POST_MODAL_VISIBLE,
     isOpen
   };
 };
 
 export const editModal = isOpen => {
   return {
-    type: EDIT_MODAL_VISIBLE,
+    type: types.EDIT_MODAL_VISIBLE,
     isOpen
   };
 };

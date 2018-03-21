@@ -1,4 +1,4 @@
-import React, { Fragment } from "react";
+import React from "react";
 
 function ChangeOrder(props) {
   let order =
@@ -6,23 +6,18 @@ function ChangeOrder(props) {
       ? "time"
       : props.props.post.posts.orderBy;
   return (
-    <Fragment>
-      <div className="pull-right">
-        <label className="form-label">Order by</label>
-      </div>
-      <div>
-        <select
-          className="form-control"
-          value={order}
-          onChange={e => {
-            props.props.changeOrder(e.target.value);
-          }}
-        >
-          <option value="votescore">VoteScore</option>
-          <option value="time">Time</option>
-        </select>
-      </div>
-    </Fragment>
+    <div className="col-sm-4">
+      <select
+        className="form-control"
+        value={order}
+        onChange={e => {
+          props.props.changeOrder(e.target.value);
+        }}
+      >
+        <option value="votescore">Order By VoteScore</option>
+        <option value="time">Order By Time</option>
+      </select>
+    </div>
   );
 }
 

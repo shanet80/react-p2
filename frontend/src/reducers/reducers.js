@@ -1,22 +1,5 @@
 import { combineReducers } from "redux";
-import {
-  LIST_CAT,
-  LIST_POSTS,
-  CHANGE_POST_LIST_ORDER,
-  LIST_POSTS_BY_CAT,
-  POST_MODAL_VISIBLE,
-  EDIT_MODAL_VISIBLE,
-  ADD_POST,
-  GET_POST,
-  DELETE_POST,
-  EDIT_POST,
-  LIST_COMMENTS,
-  ADD_COMMENT,
-  DELETE_COMMENT,
-  EDIT_COMMENT,
-  VOTE_POST,
-  VOTE_COMMENT
-} from "../actions/actions";
+import * as types from "../actions/actionTypes";
 import { sort } from "../API";
 
 // init State
@@ -27,7 +10,7 @@ const initComment = {};
 
 function category(state = initCategory, action) {
   switch (action.type) {
-    case LIST_CAT:
+    case types.LIST_CAT:
       return {
         categories: action.data
       };
@@ -38,33 +21,33 @@ function category(state = initCategory, action) {
 
 function post(state = initPost, action) {
   switch (action.type) {
-    case LIST_POSTS:
+    case types.LIST_POSTS:
       return {
         posts: action.data,
         orderBy: action.orderBy
       };
-    case LIST_POSTS_BY_CAT:
+    case types.LIST_POSTS_BY_CAT:
       return {
         ...state,
         posts: action.data
       };
-    case CHANGE_POST_LIST_ORDER:
+    case types.CHANGE_POST_LIST_ORDER:
       return {
         ...state,
         posts: sort(state.posts, action.order),
         orderBy: action.order
       };
-    case GET_POST:
+    case types.GET_POST:
       return {
         ...state,
         posts: [action.data]
       };
-    case ADD_POST:
+    case types.ADD_POST:
       return {
         ...state,
         posts: [...state.posts, action.post]
       };
-    case DELETE_POST:
+    case types.DELETE_POST:
       if (Array.isArray(state.posts)) {
         return {
           ...state,
@@ -76,7 +59,7 @@ function post(state = initPost, action) {
           posts: ""
         };
       }
-    case EDIT_POST:
+    case types.EDIT_POST:
       if (Array.isArray(state.posts)) {
         return {
           ...state,
@@ -91,7 +74,7 @@ function post(state = initPost, action) {
           posts: action.post
         };
       }
-    case VOTE_POST:
+    case types.VOTE_POST:
       if (Array.isArray(state.posts)) {
         return {
           ...state,
@@ -112,23 +95,23 @@ function post(state = initPost, action) {
 
 function comment(state = initComment, action) {
   switch (action.type) {
-    case LIST_COMMENTS:
+    case types.LIST_COMMENTS:
       return {
         comment: action.data
       };
-    case ADD_COMMENT:
+    case types.ADD_COMMENT:
       return {
         ...state,
         comment: [...state.comment, action.data]
       };
-    case DELETE_COMMENT:
+    case types.DELETE_COMMENT:
       return {
         ...state,
         comment: state.comment.filter(
           comment => comment.id !== action.comment.id
         )
       };
-    case EDIT_COMMENT:
+    case types.EDIT_COMMENT:
       return {
         ...state,
         comment: state.comment.map(
@@ -136,7 +119,7 @@ function comment(state = initComment, action) {
             comment.id === action.comment.id ? action.comment : comment
         )
       };
-    case VOTE_COMMENT:
+    case types.VOTE_COMMENT:
       return {
         ...state,
         comment: state.comment.map(
@@ -151,11 +134,11 @@ function comment(state = initComment, action) {
 
 function interfaceCon(state = initInterfaceCon, action) {
   switch (action.type) {
-    case POST_MODAL_VISIBLE:
+    case types.POST_MODAL_VISIBLE:
       return {
         modalIsOpen: action.isOpen
       };
-    case EDIT_MODAL_VISIBLE:
+    case types.EDIT_MODAL_VISIBLE:
       return {
         editModalIsOpen: action.isOpen
       };
