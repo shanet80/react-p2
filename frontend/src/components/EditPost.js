@@ -31,7 +31,7 @@ class EditPost extends Component {
     let post = this.props.post.posts[0];
     return (
       <Modal
-        isOpen={this.props.interfaceCon.editModalIsOpen}
+        isOpen={this.props.interfaceConst.editModalIsOpen}
         style={customStyles}
       >
         <h2>edit post</h2>

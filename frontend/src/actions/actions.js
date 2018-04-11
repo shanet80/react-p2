@@ -23,17 +23,17 @@ function listPosts(data, orderBy) {
   };
 }
 
-function getPost(data) {
-  return {
-    type: types.GET_POST,
-    data: data
-  };
-}
-
 function listPostsByCat(data) {
   return {
     type: types.LIST_POSTS_BY_CAT,
     data
+  };
+}
+
+function getPost(data) {
+  return {
+    type: types.GET_POST,
+    data: data
   };
 }
 
@@ -105,25 +105,8 @@ export const deleteCommentDispatch = commentid => dispatch =>
     dispatch(deleteComment(comment))
   );
 
-export const postModal = isOpen => {
-  return {
-    type: types.POST_MODAL_VISIBLE,
-    isOpen
-  };
-};
-
-export const editModal = isOpen => {
-  return {
-    type: types.EDIT_MODAL_VISIBLE,
-    isOpen
-  };
-};
-
 export const getCats = () => dispatch =>
   API.getAllCat().then(cats => dispatch(listCat(cats)));
-
-export const getPosts = () => dispatch =>
-  API.getAllPosts().then(posts => dispatch(listPosts(posts, "voteScore")));
 
 export const getPostsByCat = cat => dispatch => {
   if (cat !== "/") {
@@ -132,6 +115,9 @@ export const getPostsByCat = cat => dispatch => {
     API.getAllPosts().then(posts => dispatch(listPosts(posts, "voteScore")));
   }
 };
+
+export const getPosts = () => dispatch =>
+  API.getAllPosts().then(posts => dispatch(listPosts(posts, "voteScore")));
 
 export const getPostDispatch = postid => dispatch =>
   API.getPost(postid).then(post => dispatch(getPost(post)));
@@ -164,4 +150,18 @@ export const voteCommentDispath = (commentid, status) => dispatch => {
   API.voteComment(commentid, status).then(comment =>
     dispatch(voteComment(comment))
   );
+};
+
+export const postModal = isOpen => {
+  return {
+    type: types.POST_MODAL_VISIBLE,
+    isOpen
+  };
+};
+
+export const editModal = isOpen => {
+  return {
+    type: types.EDIT_MODAL_VISIBLE,
+    isOpen
+  };
 };

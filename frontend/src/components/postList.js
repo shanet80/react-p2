@@ -22,8 +22,8 @@ class PostList extends Component {
     return (
       <div>
         <br />
-        {post.map((post, index) => (
-          <div key={index}>
+        {post.map(post => (
+          <div key={post.id}>
             <div className="row">
               <div className="col-sm-2">
                 <button

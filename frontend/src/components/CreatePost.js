@@ -14,7 +14,10 @@ const uuidv1 = require("uuid/v1");
 class CreatePost extends Component {
   render() {
     return (
-      <Modal isOpen={this.props.interfaceCon.modalIsOpen} style={customStyles}>
+      <Modal
+        isOpen={this.props.interfaceConst.modalIsOpen}
+        style={customStyles}
+      >
         <h2>new post</h2>
         <form>
           <div className="form-group">

@@ -91,7 +91,7 @@ class App extends Component {
               />
             </Switch>
             <CreatePost
-              interfaceCon={this.props.interfaceCon}
+              interfaceConst={this.props.interfaceConst}
               categories={this.props.category.categories}
               handleModal={this.props.handleModal}
               handlePost={this.props.handlePost}
