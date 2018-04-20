@@ -7,11 +7,10 @@ import "./App.css";
 import {
   getCats,
   changePostListOrder,
-  getPostsByCat,
   postModal,
-  savePost,
-  getPostDispatch
+  savePost
 } from "../actions/actions";
+import Header from "./Header";
 import PostList from "./postList";
 import PostDetail from "./PostDetail";
 import CreatePost from "./CreatePost";
@@ -25,35 +24,12 @@ class App extends Component {
 
   render() {
     let posts = this.props.post.posts;
-    let categories = this.props.category.categories;
     if (!posts) posts = [];
-    if (!categories) categories = [];
     return (
       <div>
         <Router>
           <div className="container">
-            <div className="navbar navbar-dark bg-primary">
-              <Link
-                className="nav-link"
-                to="/"
-                onClick={() => this.props.viewCatDispatch("/")}
-              >
-                <li className="navbar-brand">readable</li>
-              </Link>
-              <ul className="nav">
-                {categories.map((cat, index) => (
-                  <Link
-                    className="nav-link btn-primary"
-                    to={"/" + cat.name}
-                    onClick={() => this.props.viewCatDispatch(cat.path)}
-                  >
-                    <li className="nav-link" key={index}>
-                      {(cat.name = cat.name)}
-                    </li>
-                  </Link>
-                ))}
-              </ul>
-            </div>
+            <Header />
             <Switch>
               <Route
                 exact
@@ -119,10 +95,8 @@ function mapDispatchToProps(dispatch) {
   return {
     listCategories: () => dispatch(getCats(dispatch)),
     changeOrder: order => dispatch(changePostListOrder(order)),
-    viewCatDispatch: cat => dispatch(getPostsByCat(cat)),
     handleModal: isOpen => dispatch(postModal(isOpen)),
-    handlePost: postData => dispatch(savePost(postData)),
-    getPost: id => dispatch(getPostDispatch(id))
+    handlePost: postData => dispatch(savePost(postData))
   };
 }
 
